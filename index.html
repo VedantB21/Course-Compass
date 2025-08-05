@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass - Your Stream. Your Goals. Your Path.</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,100 1000,0 1000,100"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #333;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Floating Elements */
+        .floating-icon {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 30%; right: 15%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
+
+        /* Problem Statement Section */
+        .problem-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .solution-content {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Key Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .feature-item:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover .step-icon {
+            transform: scale(1.1);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        /* Case Studies Section */
+        .case-studies {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-study-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .student-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #333;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps-container {
+                flex-direction: column;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .features-grid, .benefits-grid, .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Interactive Elements */
+        .stream-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stream-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .stream-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stream-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <i class="fas fa-compass"></i>
+                <span>Career Compass</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#problem">Challenges</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#case-studies">Success Stories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-icon"><i class="fas fa-graduation-cap" style="font-size: 3rem; color: rgba(255,255,255,0.3);"></i></div>
+        <div class="floating-icon"><i class="fas fa-lightbulb" style="font-size: 2.5rem; color: rgba(255,255,255,0.3);"></i></div>
+        <div class="floating-icon"><i class="fas fa-rocket" style="font-size: 2rem; color: rgba(255,255,255,0.3);"></i></div>
+        
+        <div class="hero-content">
+            <h1>Career Compass</h1>
+            <p class="tagline">Your Stream. Your Goals. Your Path.</p>
+            <p>Empowering students to make informed career decisions at every crucial junction of their academic journey. From 10th grade to graduation, we're here to guide you towards your dream career.</p>
+            <a href="#solution" class="cta-button">
+                <i class="fas fa-compass"></i> Start Your Journey
+            </a>
+        </div>
+    </section>
+
+    <!-- Problem Statement Section -->
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <h2 class="section-title fade-in">Challenges Students Face</h2>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Confusion About Options</h3>
+                    <p>Students often feel overwhelmed by the numerous career paths available after 10th, 12th, and graduation. Without proper guidance, they struggle to understand which options align with their interests and strengths.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Peer & Family Pressure</h3>
+                    <p>Many students make career choices based on social pressure, family expectations, or popular trends rather than their personal aptitude and passion, leading to future dissatisfaction.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3>Lack of Information</h3>
+                    <p>Students lack comprehensive information about emerging fields, job prospects, required skills, and educational pathways, making it difficult to make informed decisions.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Poor Timing</h3>
+                    <p>Career guidance often comes too late, when students have already committed to a particular stream or course, limiting their ability to explore other options.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Financial Constraints</h3>
+                    <p>Students from diverse economic backgrounds struggle to find affordable career counseling services and aren't aware of scholarships and financial aid options.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <h3>No Clear Roadmap</h3>
+                    <p>Even when students choose a career path, they lack a clear step-by-step roadmap for skill development, entrance exams, and career progression.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Overview Section -->
+    <section class="solution-section" id="solution">
+        <div class="container">
+            <div class="solution-content fade-in">
+                <h2 class="section-title">Our Digital Solution</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Career Compass is a comprehensive digital platform designed to eliminate career confusion and empower students with personalized guidance, comprehensive information, and actionable roadmaps.</p>
+            </div>
+            <div class="solution-features">
+                <div class="feature-card fade-in">
+                    <i class="fas fa-brain" style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffd700;"></i>
+                    <h3>AI-Powered Guidance</h3>
+                    <p>Advanced algorithms analyze your interests, skills, and goals to provide personalized career recommendations.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="fas fa-database" style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffd700;"></i>
+                    <h3>Comprehensive Database</h3>
+                    <p>Access detailed information about careers, courses, colleges, entrance exams, and scholarships all in one place.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="fas fa-users-cog" style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffd700;"></i>
+                    <h3>Expert Mentorship</h3>
+                    <p>Connect with industry professionals and career counselors for personalized guidance and real-world insights.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="fas fa-route" style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffd700;"></i>
+                    <h3>Personalized Roadmaps</h3>
+                    <p>Get step-by-step action plans tailored to your chosen career path with timelines and milestones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">1</div>
+                        <h3>Stream-wise Career Guidance</h3>
+                    </div>
+                    <p><strong>What it offers:</strong> Select your stream (Arts, Commerce, Science, Technical, Vocational) and explore all available career paths including government exams, job roles, courses, and certification paths.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Detailed career options for each stream</li>
+                        <li>• Government job opportunities</li>
+                        <li>• Professional courses and certifications</li>
+                        <li>• Emerging career fields</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">2</div>
+                        <h3>Course & College Finder</h3>
+                    </div>
+                    <p><strong>Smart Filtering:</strong> Find the perfect course and college based on your preferences with advanced filtering options.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Filter by stream, budget, and location</li>
+                        <li>• Government vs private institutions</li>
+                        <li>• Distance/online/regular mode options</li>
+                        <li>• Detailed college information and rankings</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">3</div>
+                        <h3>Entrance Exam Guide</h3>
+                    </div>
+                    <p><strong>Comprehensive Preparation:</strong> Access complete information about relevant entrance exams for your chosen stream.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Stream-specific exam lists (NEET, CUET, NDA, CLAT)</li>
+                        <li>• Detailed syllabus and exam patterns</li>
+                        <li>• Preparation resources and strategies</li>
+                        <li>• Important dates and application deadlines</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">4</div>
+                        <h3>AI Career Counselling</h3>
+                    </div>
+                    <p><strong>Personalized Support:</strong> Get instant guidance through our AI-powered chatbot and connect with real mentors for in-depth counseling.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• 24/7 AI-powered career guidance</li>
+                        <li>• Interest-based career matching</li>
+                        <li>• Stream switching recommendations</li>
+                        <li>• One-on-one mentorship sessions</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">5</div>
+                        <h3>Skill-Based Path Suggestion</h3>
+                    </div>
+                    <p><strong>Skill Development:</strong> Discover the skills needed for each career and find resources to develop them effectively.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Skill requirements for each career path</li>
+                        <li>• Free and paid learning resources</li>
+                        <li>• Coursera, SWAYAM, and other platform links</li>
+                        <li>• Skill assessment and progress tracking</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">6</div>
+                        <h3>Success Stories & Interviews</h3>
+                    </div>
+                    <p><strong>Real Inspiration:</strong> Learn from successful professionals who started from your stream and discover their journey to success.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Success stories from all streams</li>
+                        <li>• Professional interviews and insights</li>
+                        <li>• Career transition experiences</li>
+                        <li>• Industry trends and opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">7</div>
+                        <h3>Scholarship & Financial Aid</h3>
+                    </div>
+                    <p><strong>Financial Support:</strong> Discover scholarships and financial aid opportunities tailored to your background and academic performance.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Stream-specific scholarship listings</li>
+                        <li>• Filters by income, category, and merit</li>
+                        <li>• Application deadlines and requirements</li>
+                        <li>• Government and private funding options</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">8</div>
+                        <h3>Progress Tracker</h3>
+                    </div>
+                    <p><strong>Stay Organized:</strong> Track your applications, exam deadlines, counseling sessions, and career preparation progress in one dashboard.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Application status tracking</li>
+                        <li>• Exam deadline reminders</li>
+                        <li>• Personalized to-do lists</li>
+                        <li>• Goal setting and achievement tracking</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-header">
+                        <div class="feature-number">9</div>
+                        <h3>Parent/Teacher Dashboard</h3>
+                    </div>
+                    <p><strong>Collaborative Support:</strong> Enable parents and teachers to track student progress and provide supportive guidance throughout the journey.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1rem;">
+                        <li>• Student progress monitoring</li>
+                        <li>• Career exploration insights</li>
+                        <li>• Communication tools</li>
+                        <li>• Collaborative decision-making support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title fade-in">How It Works</h2>
+            <div class="steps-container">
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Sign Up & Profile</h3>
+                    <p>Create your account and complete your academic profile with current stream, interests, and goals.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Take Assessments</h3>
+                    <p>Complete personality and aptitude tests to understand your strengths and career preferences.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Explore Options</h3>
+                    <p>Browse personalized career recommendations, courses, colleges, and exam information.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Get Guidance</h3>
+                    <p>Connect with AI counselor or real mentors for personalized advice and career planning.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Execute Plan</h3>
+                    <p>Follow your personalized roadmap, track progress, and achieve your career goals step by step.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section" id="benefits">
+        <div class="container">
+            <h2 class="section-title fade-in">Benefits for Students</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Clarity & Confidence</h3>
+                    <p>Eliminate career confusion with data-driven insights and personalized recommendations that boost your confidence in decision-making.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Save Time & Effort</h3>
+                    <p>Access all career-related information in one platform, saving hours of research and avoiding information overload.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Personalized Approach</h3>
+                    <p>Get recommendations tailored to your unique interests, skills, and circumstances rather than generic advice.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Excellence</h3>
+                    <p>Make informed choices about streams and courses, leading to better academic performance and satisfaction.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Professional Network</h3>
+                    <p>Connect with industry professionals, mentors, and like-minded peers to build valuable relationships.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Future-Ready Skills</h3>
+                    <p>Stay updated with emerging career trends and develop skills that are in demand in the job market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="case-studies">
+        <div class="container">
+            <h2 class="section-title fade-in">Success Stories</h2>
+            <div class="case-study-grid">
+                <div class="case-study-card fade-in">
+                    <div class="student-info">
+                        <div class="student-avatar">A</div>
+                        <div>
+                            <h4>Arjun Kumar</h4>
+                            <p style="color: #666;">Commerce Stream → CA Journey</p>
+                        </div>
+                    </div>
+                    <p><strong>Challenge:</strong> Arjun was confused between CA, CS, and MBA after 12th commerce. Family pressure was pushing him towards engineering.</p>
+                    <p><strong>Solution:</strong> Through our platform's personality assessment and mentor guidance, he discovered his analytical strengths aligned perfectly with Chartered Accountancy.</p>
+                    <p><strong>Outcome:</strong> Successfully cleared CA Foundation and is now pursuing CA with confidence and clear career roadmap.</p>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                        <em>"Career Compass helped me understand that my passion for numbers and analysis was perfect for CA. The mentor guidance was invaluable!"</em>
+                    </div>
+                </div>
+
+                <div class="case-study-card fade-in">
+                    <div class="student-info">
+                        <div class="student-avatar">P</div>
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <p style="color: #666;">Science Stream → Design Career</p>
+                        </div>
+                    </div>
+                    <p><strong>Challenge:</strong> Despite being in science stream, Priya had a creative side and was interested in design but didn't know how to transition.</p>
+                    <p><strong>Solution:</strong> Our platform showed her paths to combine science with design, including industrial design, UX design, and architectural visualization.</p>
+                    <p><strong>Outcome:</strong> Currently pursuing Industrial Design engineering with a clear understanding of career prospects in the field.</p>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                        <em>"I never knew I could combine my science background with my love for design. This platform opened my eyes to amazing possibilities!"</em>
+                    </div>
+                </div>
+
+                <div class="case-study-card fade-in">
+                    <div class="student-info">
+                        <div class="student-avatar">R</div>
+                        <div>
+                            <h4>Rahul Patel</h4>
+                            <p style="color: #666;">Arts Stream → Digital Marketing</p>
+                        </div>
+                    </div>
+                    <p><strong>Challenge:</strong> Rahul chose arts but faced criticism about "limited opportunities." He was demotivated and unsure about his future.</p>
+                    <p><strong>Solution:</strong> Our platform revealed numerous emerging careers in arts including digital marketing, content strategy, and social media management.</p>
+                    <p><strong>Outcome:</strong> Completed digital marketing certification and landed an internship at a leading agency while still in college.</p>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                        <em>"Arts stream opened doors I never knew existed. The skill-based recommendations helped me build a successful career path!"</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stream Selector Interactive Section -->
+    <section style="padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title fade-in">Explore Your Stream</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Click on your stream to discover personalized career opportunities</p>
+            <div class="stream-selector">
+                <div class="stream-card fade-in" onclick="exploreStream('science')">
+                    <div class="stream-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Science</h3>
+                    <p>Engineering, Medical, Research, Technology</p>
+                </div>
+                <div class="stream-card fade-in" onclick="exploreStream('commerce')">
+                    <div class="stream-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Commerce</h3>
+                    <p>Business, Finance, Accounting, Economics</p>
+                </div>
+                <div class="stream-card fade-in" onclick="exploreStream('arts')">
+                    <div class="stream-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Arts</h3>
+                    <p>Literature, Social Sciences, Design, Media</p>
+                </div>
+                <div class="stream-card fade-in" onclick="exploreStream('vocational')">
+                    <div class="stream-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Vocational</h3>
+                    <p>Skill-based, Technical, Industry-focused</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="fade-in">Ready to Navigate Your Career Path?</h2>
+            <p class="fade-in" style="font-size: 1.2rem; margin: 1rem 0 2rem;">Join thousands of students who have found clarity and confidence in their career decisions. Your future starts with the right guidance today.</p>
+            <div class="cta-buttons fade-in">
+                <a href="#" class="btn-primary" onclick="startJourney()">
+                    <i class="fas fa-rocket"></i> Start Free Trial
+                </a>
+                <a href="#" class="btn-secondary" onclick="scheduleDemo()">
+                    <i class="fas fa-calendar"></i> Schedule Demo
+                </a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8;">
+                <i class="fas fa-shield-alt"></i> Trusted by 10,000+ students | 
+                <i class="fas fa-users"></i> 500+ Expert Mentors | 
+                <i class="fas fa-star"></i> 4.8/5 Rating
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Career Compass</h3>
+                    <p>Empowering students to make informed career decisions with personalized guidance and comprehensive resources.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: #ffd700; margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #ffd700; margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #ffd700; margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #ffd700; margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#case-studies">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Streams</h3>
+                    <ul>
+                        <li><a href="#">Science Stream</a></li>
+                        <li><a href="#">Commerce Stream</a></li>
+                        <li><a href="#">Arts Stream</a></li>
+                        <li><a href="#">Vocational Courses</a></li>
+                        <li><a href="#">Technical Education</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Career Compass. All rights reserved. | Empowering futures, one student at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Interactive functions
+        function exploreStream(stream) {
+            const streamData = {
+                science: {
+                    title: 'Science Stream Opportunities',
+                    careers: ['Engineering', 'Medical', 'Research', 'Biotechnology', 'Data Science', 'Environmental Science'],
+                    message: 'Discover cutting-edge careers in science and technology!'
+                },
+                commerce: {
+                    title: 'Commerce Stream Opportunities',
+                    careers: ['Chartered Accountancy', 'MBA', 'Banking', 'Finance', 'Digital Marketing', 'Entrepreneurship'],
+                    message: 'Explore dynamic careers in business and finance!'
+                },
+                arts: {
+                    title: 'Arts Stream Opportunities',
+                    careers: ['Journalism', 'Psychology', 'Social Work', 'Design', 'Content Writing', 'Public Relations'],
+                    message: 'Unleash your creativity with diverse arts careers!'
+                },
+                vocational: {
+                    title: 'Vocational Opportunities',
+                    careers: ['Digital Marketing', 'Web Development', 'Graphic Design', 'Hospitality', 'Fashion Design', 'Photography'],
+                    message: 'Master practical skills for immediate career success!'
+                }
+            };
+
+            const data = streamData[stream];
+            alert(`${data.title}\n\n${data.message}\n\nTop Career Options:\n• ${data.careers.join('\n• ')}\n\nClick "Start Free Trial" to explore detailed guidance!`);
+        }
+
+        function startJourney() {
+            // Simulate loading
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="loading"></span> Creating Account...';
+            button.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.pointerEvents = 'auto';
+                alert('🎉 Welcome to Career Compass!\n\nYour free trial account has been created. You can now:\n\n✅ Take personality & aptitude assessments\n✅ Explore stream-specific career options\n✅ Connect with expert mentors\n✅ Access comprehensive career resources\n✅ Build your personalized roadmap\n\nLet\'s start your career discovery journey!');
+            }, 2000);
+        }
+
+        function scheduleDemo() {
+            alert('📅 Schedule Your Personal Demo\n\nOur career counselors will:\n\n• Understand your interests and goals\n• Show you platform features\n• Provide initial career guidance\n• Answer all your questions\n\nAvailable slots:\n🕐 Weekdays: 10 AM - 6 PM\n🕐 Weekends: 2 PM - 5 PM\n\nCall us at: +91-XXXX-XXXXX\nEmail: demo@careerpathnavigator.com');
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating animation to hero icons
+            const floatingIcons = document.querySelectorAll('.floating-icon');
+            floatingIcons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.problem-card, .feature-card, .benefit-card, .case-study-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add typing effect to tagline
+            const tagline = document.querySelector('.hero .tagline');
+            const text = tagline.textContent;
+            tagline.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    tagline.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+</body>
+</html>
